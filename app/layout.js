@@ -1,9 +1,16 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Sigmar, Bebas_Neue } from "next/font/google";
 import "./globals.css";
+import NavigationBar from "@/components/NavigationBar/NavigationBar";
+import Footer from "@/components/Footer/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+});
+const bebas = Bebas_Neue({
+  variable: "--font-sigmar",
+  subsets: ["latin"],
+  weight: ["400"]
 });
 
 const geistMono = Geist_Mono({
@@ -19,8 +26,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${bebas.variable} antialiased`}
+      >
+        <NavigationBar></NavigationBar>
+        <div className=" mx-2 lg:mx-10 px-1 lg:px-5">
+          {children}
+        </div>
+        <Footer></Footer>
       </body>
     </html>
   );
