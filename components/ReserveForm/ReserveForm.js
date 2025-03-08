@@ -5,9 +5,12 @@ import React from 'react'
 import './style.css'
 import { Button, DatePicker, Input, Label, Popover, PopoverAction, PopoverContent } from 'keep-react'
 import { Calendar } from 'phosphor-react'
+import { useRouter } from 'next/navigation'
+
 
 
 export default function ReserveForm() {
+  const router = useRouter()
   const [date, setDate] = useState(new Date())
   const [selectedTime, setSelectedTime] = useState("");
   const reservedBookings = {
@@ -19,17 +22,20 @@ export default function ReserveForm() {
     ? allTimes.filter((time) => !reservedBookings[date.toDateString()]?.includes(time))
     : allTimes;
 
+
   const handleSubmitButton = e => {
     e.preventDefault()
     const form = e.target
     const name = form.booker.value;
     const email = form.email.value;
     const phone = form.number.value;
+    const table = form.table.value;
     const selectedDate = date.toDateString();
     const bookingTime = selectedTime;
-    const data = {name, email, phone,selectedDate,bookingTime}
-    console.log(data);
+    router.push(`/reservation?name=${name}&email=${email}&selectedDate=${selectedDate}&bookingTime=${bookingTime}&table=${table}`)
   }
+
+
   return (
     <div>
       <div className='reserveForm w-[350px] lg:w-[750px] rounded-2xl p-5'>
@@ -88,7 +94,7 @@ export default function ReserveForm() {
               </label>
               <fieldset className=" space-y-1">
                 <Label className='text-white' htmlFor="name">Select members</Label>
-                <Input id="name" required placeholder="How many tables do you need?" type="number" />
+                <Input id="name" name='table' required placeholder="How many tables do you need?" type="number" />
               </fieldset>
               <div className='flex justify-center'>
                 <Button className='bg-green-500' type='submit'>Book your table now</Button>
