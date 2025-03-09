@@ -1,3 +1,4 @@
+import getBooks from "@/lib/getBooks";
 import Image from "next/image";
 
 export default function Home() {

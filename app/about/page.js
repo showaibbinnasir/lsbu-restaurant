@@ -4,8 +4,24 @@ import money from "@/public/money.png"
 import food from "@/public/food.png"
 import Image from 'next/image'
 import ReserveForm from '@/components/ReserveForm/ReserveForm'
+import getBooks from '@/lib/getBooks'
 
-export default function About() {
+export default async function About() {
+  const bookingData = await getBooks()
+  const reservedBookings = bookingData.reduce((acc, booking) => {
+    const { selectedDate, bookingTime } = booking;
+  
+    if (selectedDate && bookingTime) {
+      if (!acc[selectedDate]) {
+        acc[selectedDate] = [];
+      }
+      if (!acc[selectedDate].includes(bookingTime)) {
+        acc[selectedDate].push(bookingTime);
+      }
+    }
+  
+    return acc;
+  }, {});
 
   const types = [
     {
@@ -56,9 +72,9 @@ export default function About() {
         </div>
       </div>
       <div>
-        <div>
-          <ReserveForm></ReserveForm>
-        </div>
+        {/* <div>
+          <ReserveForm reservedBookings={reservedBookings}></ReserveForm>
+        </div> */}
 
       </div>
     </div>

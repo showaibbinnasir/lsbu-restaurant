@@ -9,21 +9,21 @@ import { useRouter } from 'next/navigation'
 
 
 
-export default function ReserveForm() {
+export default function ReserveForm({ reservedBookings }) {
   const router = useRouter()
   const [date, setDate] = useState(new Date())
   const [selectedTime, setSelectedTime] = useState("");
-  const reservedBookings = {
-    "Wed Mar 26 2025": ["10:00", "14:00", "16:00"],
-    "Thu Mar 20 2025": ["9:00", "12:00"],
-  };
+  // const reservedBookings = {
+  //   "Wed Mar 26 2025": ["10:00", "14:00", "16:00"],
+  //   "Thu Mar 20 2025": ["9:00", "12:00"],
+  // };
+  console.log(reservedBookings);
   const allTimes = Array.from({ length: 11 }, (_, i) => `${8 + i}:00`);
   const availableTimes = date.toDateString()
     ? allTimes.filter((time) => !reservedBookings[date.toDateString()]?.includes(time))
     : allTimes;
 
-
-  const handleSubmitButton = e => {
+  const handleSubmitButton = async (e) => {
     e.preventDefault()
     const form = e.target
     const name = form.booker.value;
@@ -32,7 +32,25 @@ export default function ReserveForm() {
     const table = form.table.value;
     const selectedDate = date.toDateString();
     const bookingTime = selectedTime;
-    router.push(`/reservation?name=${name}&email=${email}&selectedDate=${selectedDate}&bookingTime=${bookingTime}&table=${table}`)
+    const bookingData = { name, email, phone, table, selectedDate, bookingTime }
+    try {
+      const response = await fetch("/api/postBooking", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(bookingData),
+      });
+
+      const result = await response.json();
+      console.log(result);
+      router.push(`/reservation?name=${name}&email=${email}&selectedDate=${selectedDate}&bookingTime=${bookingTime}&table=${table}`)
+    } catch (error) {
+      console.error("Error submitting booking:", error);
+    }
+
+
+
   }
 
 
