@@ -8,7 +8,7 @@ export default function NavigationBar() {
     return (
         <div className='p-10'>
             <h1 className="font-[family-name:var(--font-sigmar)] text-4xl">LSBU Restaurant</h1>
-            <div className='grid grid-cols-2 md:grid-cols-12 lg:grid-cols-14 text-center items-center gap-5 text-2xl my-10'>
+            <div className='grid grid-cols-2 md:grid-cols-6 lg:grid-cols-14 text-center items-center gap-5 text-2xl my-10'>
                 <Link href="/" className={`text-black p-[12px] rounded-lg transition ${pathname === "/"
                     ? " font-bold border-b-2 border-black"
                     : "hover:text-green-600"
@@ -16,7 +16,7 @@ export default function NavigationBar() {
                 <Link href="/about" className={`text-black p-[12px] rounded-lg transition ${pathname === "/about"
                     ? " font-bold border-b-2 border-black"
                     : "hover:text-green-600"
-                    }`}><h1>About</h1></Link>
+                    }`}><h1>Bookings</h1></Link>
                 <Link href="/menu" className={`text-black p-[12px] rounded-lg transition ${pathname === "/menu"
                     ? " font-bold border-b-2 border-black"
                     : "hover:text-green-600"
