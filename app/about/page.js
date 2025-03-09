@@ -7,21 +7,21 @@ import ReserveForm from '@/components/ReserveForm/ReserveForm'
 import getBooks from '@/lib/getBooks'
 
 export default async function About() {
-  const bookingData = await getBooks()
-  const reservedBookings = bookingData.reduce((acc, booking) => {
-    const { selectedDate, bookingTime } = booking;
+  // const bookingData = await getBooks()
+  // const reservedBookings = bookingData.reduce((acc, booking) => {
+  //   const { selectedDate, bookingTime } = booking;
   
-    if (selectedDate && bookingTime) {
-      if (!acc[selectedDate]) {
-        acc[selectedDate] = [];
-      }
-      if (!acc[selectedDate].includes(bookingTime)) {
-        acc[selectedDate].push(bookingTime);
-      }
-    }
+  //   if (selectedDate && bookingTime) {
+  //     if (!acc[selectedDate]) {
+  //       acc[selectedDate] = [];
+  //     }
+  //     if (!acc[selectedDate].includes(bookingTime)) {
+  //       acc[selectedDate].push(bookingTime);
+  //     }
+  //   }
   
-    return acc;
-  }, {});
+  //   return acc;
+  // }, {});
 
   const types = [
     {
