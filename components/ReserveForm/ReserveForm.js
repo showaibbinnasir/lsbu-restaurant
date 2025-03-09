@@ -3,7 +3,7 @@ import { format } from 'date-fns'
 import { useState } from 'react'
 import React from 'react'
 import './style.css'
-import { Button, DatePicker, Input, Label, Popover, PopoverAction, PopoverContent } from 'keep-react'
+import { Button, DatePicker, Input, Label, Popover, PopoverAction, PopoverContent, Spinner } from 'keep-react'
 import { Calendar } from 'phosphor-react'
 import { useRouter } from 'next/navigation'
 
@@ -23,7 +23,10 @@ export default function ReserveForm({ reservedBookings }) {
     ? allTimes.filter((time) => !reservedBookings[date.toDateString()]?.includes(time))
     : allTimes;
 
+    const [isLoading, setIsLoading] = useState(false)
+
   const handleSubmitButton = async (e) => {
+    setIsLoading(true)
     e.preventDefault()
     const form = e.target
     const name = form.booker.value;
@@ -44,8 +47,10 @@ export default function ReserveForm({ reservedBookings }) {
 
       const result = await response.json();
       console.log(result);
+      setIsLoading(false)
       router.push(`/reservation?name=${name}&email=${email}&selectedDate=${selectedDate}&bookingTime=${bookingTime}&table=${table}`)
     } catch (error) {
+      setIsLoading(false)
       console.error("Error submitting booking:", error);
     }
 
@@ -115,7 +120,11 @@ export default function ReserveForm({ reservedBookings }) {
                 <Input id="name" name='table' required placeholder="How many tables do you need?" type="number" />
               </fieldset>
               <div className='flex justify-center'>
-                <Button className='bg-green-500' type='submit'>Book your table now</Button>
+                {
+                  isLoading ? 
+                  <Button className='bg-green-500' disabled><Spinner/></Button> : 
+                  <Button className='bg-green-500' type='submit'>Book your table now</Button>
+                }
               </div>
             </form>
           </div>
