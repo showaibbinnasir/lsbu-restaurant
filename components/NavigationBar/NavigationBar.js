@@ -8,6 +8,9 @@ export default function NavigationBar() {
     return (
         <div className='p-10'>
             <h1 className="font-[family-name:var(--font-sigmar)] text-4xl">LSBU Restaurant</h1>
+            <div className='flex my-5'>
+                <Link href='/login'><h1 className='text-white bg-green-500 rounded-lg px-5 py-2'>Login as manager</h1></Link>
+            </div>
             <div className='grid grid-cols-2 md:grid-cols-6 lg:grid-cols-14 text-center items-center gap-5 text-2xl my-10'>
                 <Link href="/" className={`text-black p-[12px] rounded-lg transition ${pathname === "/"
                     ? " font-bold border-b-2 border-black"

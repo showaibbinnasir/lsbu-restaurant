@@ -2,6 +2,7 @@ import { Geist, Geist_Mono, Sigmar, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 import NavigationBar from "@/components/NavigationBar/NavigationBar";
 import Footer from "@/components/Footer/Footer";
+import { ToastWrapper } from "keep-react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +33,16 @@ export default function RootLayout({ children }) {
         <NavigationBar></NavigationBar>
         <div className=" mx-2 lg:mx-10 px-1 lg:px-5">
           {children}
+          <ToastWrapper
+            richColors={true}
+            toastOptions={{
+              classNames: {
+                title: 'text-body-3 font-medium',
+                toast: 'rounded-xl shadow-large',
+                description: 'text-body-4 font-normal',
+              },
+            }}
+          />
         </div>
         <Footer></Footer>
       </body>
