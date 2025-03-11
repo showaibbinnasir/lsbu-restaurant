@@ -2,13 +2,19 @@ import getBooks from "@/lib/getBooks";
 import Image from "next/image";
 import banner from "@/public/banner.png"
 import { Avatar, AvatarFallback, AvatarImage } from "keep-react";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]/route";
 export default async function Home() {
   const data = await getBooks()
+  const session = await getServerSession(authOptions)
   return (
     <div className="my-10">
       <div>
         <div>
           <div className="">
+            {
+              session?.user && <h1 className="text-center">Hello, {session?.user?.name}</h1>
+            }
             <h1 className="text-xl uppercase font-semibold text-center text-black">Welcome to</h1>
             <h1 className="text-[50px] font-[family-name:var(--font-sigmar)] uppercase text-center text-black" >LSBU RESTAURANT</h1>
           </div>
