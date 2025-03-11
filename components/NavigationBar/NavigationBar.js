@@ -14,7 +14,7 @@ export default function NavigationBar() {
             {
                 session?.user == null ?
                     <div className='flex my-5'>
-                        <Link href='/login'><h1 className='text-white bg-green-500 rounded-lg px-5 py-2'>Sign in</h1></Link>
+                        <Link href='/login'><h1 className='text-white bg-green-500 rounded-lg px-5 py-2'>Sign in as manager</h1></Link>
                     </div> :
                     <div>
                         <div className='flex my-5'>
