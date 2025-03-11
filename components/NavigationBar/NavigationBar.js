@@ -14,28 +14,28 @@ export default function NavigationBar() {
             {
                 session?.user == null ?
                     <div className='flex my-5'>
-                        <Link href='/login'><h1 className='text-white bg-green-500 rounded-lg px-5 py-2'>Sign in as manager</h1></Link>
+                        <Link href='/login' prefetch={false} ><h1 className='text-white bg-green-500 rounded-lg px-5 py-2'>Sign in as manager</h1></Link>
                     </div> :
                     <div>
                         <div className='flex my-5'>
-                            <Link href='/dashboard'><h1 className='text-white bg-green-500 rounded-lg px-5 py-2'>{session?.user?.name}</h1></Link>
+                            <Link href='/dashboard' prefetch={false}><h1 className='text-white bg-green-500 rounded-lg px-5 py-2'>{session?.user?.name}</h1></Link>
                         </div>
                     </div>
             }
             <div className='grid grid-cols-2 md:grid-cols-6 lg:grid-cols-14 text-center items-center gap-5 text-2xl my-10'>
-                <Link href="/" className={`text-black p-[12px] rounded-lg transition ${pathname === "/"
+                <Link href="/" prefetch={false} className={`text-black p-[12px] rounded-lg transition ${pathname === "/"
                     ? " font-bold border-b-2 border-black"
                     : "hover:text-green-600"
                     }`}><h1>Home</h1></Link>
-                <Link href="/about" className={`text-black p-[12px] rounded-lg transition ${pathname === "/about"
+                <Link href="/about" prefetch={false} className={`text-black p-[12px] rounded-lg transition ${pathname === "/about"
                     ? " font-bold border-b-2 border-black"
                     : "hover:text-green-600"
                     }`} >Booking</Link>
-                <Link href="/menu" className={`text-black p-[12px] rounded-lg transition ${pathname === "/menu"
+                <Link href="/menu" prefetch={false} className={`text-black p-[12px] rounded-lg transition ${pathname === "/menu"
                     ? " font-bold border-b-2 border-black"
                     : "hover:text-green-600"
                     }`}><h1>Menu</h1></Link>
-                <Link href="/reviews" className={`text-black p-[12px] rounded-lg transition ${pathname === "/reviews"
+                <Link href="/reviews" prefetch={false} className={`text-black p-[12px] rounded-lg transition ${pathname === "/reviews"
                     ? " font-bold border-b-2 border-black"
                     : "hover:text-green-600"
                     }`}><h1>Reviews</h1></Link>
