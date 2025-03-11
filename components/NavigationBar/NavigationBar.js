@@ -27,7 +27,10 @@ export default function NavigationBar() {
                     ? " font-bold border-b-2 border-black"
                     : "hover:text-green-600"
                     }`}><h1>Home</h1></Link>
-                <Link href="/about" >Booking</Link>
+                <Link href="/about" className={`text-black p-[12px] rounded-lg transition ${pathname === "/about"
+                    ? " font-bold border-b-2 border-black"
+                    : "hover:text-green-600"
+                    }`} >Booking</Link>
                 <Link href="/menu" className={`text-black p-[12px] rounded-lg transition ${pathname === "/menu"
                     ? " font-bold border-b-2 border-black"
                     : "hover:text-green-600"
