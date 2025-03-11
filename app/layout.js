@@ -3,6 +3,7 @@ import "./globals.css";
 import NavigationBar from "@/components/NavigationBar/NavigationBar";
 import Footer from "@/components/Footer/Footer";
 import { ToastWrapper } from "keep-react";
+import { AuthProvider } from "@/components/Provider/Provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,20 +31,22 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${bebas.variable} antialiased`}
       >
-        <NavigationBar></NavigationBar>
-        <div className=" mx-2 lg:mx-10 px-1 lg:px-5">
-          {children}
-          <ToastWrapper
-            richColors={true}
-            toastOptions={{
-              classNames: {
-                title: 'text-body-3 font-medium',
-                toast: 'rounded-xl shadow-large',
-                description: 'text-body-4 font-normal',
-              },
-            }}
-          />
-        </div>
+        <AuthProvider>
+          <NavigationBar></NavigationBar>
+          <div className=" mx-2 lg:mx-10 px-1 lg:px-5">
+            {children}
+            <ToastWrapper
+              richColors={true}
+              toastOptions={{
+                classNames: {
+                  title: 'text-body-3 font-medium',
+                  toast: 'rounded-xl shadow-large',
+                  description: 'text-body-4 font-normal',
+                },
+              }}
+            />
+          </div>
+        </AuthProvider>
         <Footer></Footer>
       </body>
     </html>

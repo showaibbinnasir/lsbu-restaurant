@@ -2,8 +2,15 @@ import SignInPage from '@/components/SignInPage/SignInPage'
 import React from 'react'
 import registerImage from "@/public/register.png"
 import Image from 'next/image'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '../api/auth/[...nextauth]/route'
+import { redirect } from 'next/navigation'
 
-export default function page() {
+export default async function page() {
+  const session = await getServerSession(authOptions)
+        if(session){
+            redirect('/')
+        }
   return (
     <div className='flex justify-center'>
       <div className='my-5 flex flex-col lg:flex-row'>
