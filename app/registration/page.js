@@ -3,7 +3,7 @@ import Image from 'next/image'
 import React from 'react'
 import registerImage from "@/public/register.png"
 import { getServerSession } from 'next-auth'
-import { authOptions } from '../api/auth/[...nextauth]/route'
+import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import { redirect } from 'next/navigation'
 
 export default async function page() {

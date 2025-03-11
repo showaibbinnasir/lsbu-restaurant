@@ -3,8 +3,8 @@ import React from 'react'
 import registerImage from "@/public/register.png"
 import Image from 'next/image'
 import { getServerSession } from 'next-auth'
-import { authOptions } from '../api/auth/[...nextauth]/route'
 import { redirect } from 'next/navigation'
+import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 
 export default async function page() {
   const session = await getServerSession(authOptions)
