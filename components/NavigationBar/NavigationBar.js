@@ -1,11 +1,11 @@
 'use client'
 import { signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import React from 'react'
 
 export default function NavigationBar() {
-    
+    const router = useRouter()
     const { data: session } = useSession()
     const pathname = usePathname()
     return (
@@ -30,7 +30,7 @@ export default function NavigationBar() {
                 <Link href="/about" className={`text-black p-[12px] rounded-lg transition ${pathname === "/about"
                     ? " font-bold border-b-2 border-black"
                     : "hover:text-green-600"
-                    }`}><h1>Bookings</h1></Link>
+                    }`} legacyBehavior ><a onClick={()=>router.push('/about')}>Booking</a></Link>
                 <Link href="/menu" className={`text-black p-[12px] rounded-lg transition ${pathname === "/menu"
                     ? " font-bold border-b-2 border-black"
                     : "hover:text-green-600"
