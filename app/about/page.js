@@ -7,6 +7,7 @@ import ReserveForm from '@/components/ReserveForm/ReserveForm'
 import getBooks from '@/lib/getBooks'
 
 export default async function About() {
+  
   const bookingData = await getBooks()
   const reservedBookings = bookingData.reduce((acc, booking) => {
     const { selectedDate, bookingTime } = booking;

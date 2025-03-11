@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import React from 'react'
 
 export default function NavigationBar() {
+    
     const { data: session } = useSession()
     const pathname = usePathname()
     return (

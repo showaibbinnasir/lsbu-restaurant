@@ -6,10 +6,12 @@ import './style.css'
 import { Button, DatePicker, Input, Label, Popover, PopoverAction, PopoverContent, Spinner } from 'keep-react'
 import { Calendar } from 'phosphor-react'
 import { useRouter } from 'next/navigation'
+import { useSession } from 'next-auth/react'
 
 
 
 export default function ReserveForm({ reservedBookings }) {
+  const {data:session} = useSession()
   const router = useRouter()
   const [date, setDate] = useState(new Date())
   const [selectedTime, setSelectedTime] = useState("");
@@ -69,11 +71,11 @@ export default function ReserveForm({ reservedBookings }) {
             <form onSubmit={handleSubmitButton} className='flex flex-col gap-5'>
               <fieldset className=" space-y-1">
                 <Label className='text-white' htmlFor="name">Enter Name</Label>
-                <Input id="name" placeholder="Enter name" required name="booker" type="text" />
+                <Input id="name" defaultValue={session?.user?.name} placeholder="Enter name" required name="booker" type="text" />
               </fieldset>
               <fieldset className=" space-y-1">
                 <Label className='text-white' htmlFor="mail">Enter Email</Label>
-                <Input id="mail" placeholder="Enter your email" required name='email' type="email" />
+                <Input defaultValue={session?.user?.email} id="mail" placeholder="Enter your email" required name='email' type="email" />
               </fieldset>
               <fieldset className=" space-y-1">
                 <Label className='text-white' htmlFor="name">Enter Phone</Label>
