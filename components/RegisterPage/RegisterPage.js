@@ -71,12 +71,12 @@ export default function RegisterPage() {
               <Input onChange={(e) => setName(e.target.value)} id="name" placeholder="Enter Name" type="text" />
             </fieldset>
             <fieldset className="w-[300px] lg:w-[400px] space-y-1">
-              <Label htmlFor="name">Enter Email</Label>
-              <Input onChange={(e) => setEmail(e.target.value)} id="name" placeholder="Enter Email" type="email" />
+              <Label htmlFor="email">Enter Email</Label>
+              <Input onChange={(e) => setEmail(e.target.value)} id="email" placeholder="Enter Email" type="email" />
             </fieldset>
             <fieldset className="w-[300px] lg:w-[400px] space-y-1">
-              <Label htmlFor="name">Enter Password</Label>
-              <Input onChange={(e) => setPassword(e.target.value)} id="name" placeholder="Enter Password" type="password" />
+              <Label htmlFor="password">Enter Password</Label>
+              <Input onChange={(e) => setPassword(e.target.value)} id="password" placeholder="Enter Password" type="password" />
             </fieldset>
             {
               error && <div className='flex my-2'>
