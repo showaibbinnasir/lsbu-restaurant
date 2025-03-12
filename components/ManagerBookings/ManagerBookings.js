@@ -4,7 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage, Button, Spinner, toast } from 'kee
 import React, { useState } from 'react'
 
 export default function ManagerBookings() {
-    const { data: data = [], refetch } = useQuery({
+    const { data: data = [], refetch, isLoading } = useQuery({
         queryKey: ['data'],
         queryFn: async () => {
             const res = await fetch('/api/getBookDetails')
@@ -12,9 +12,9 @@ export default function ManagerBookings() {
             return data;
         }
     })
-    const [isLoading, setIsloading] = useState(false)
+    const [isDltLoading, setIsDelLoading] = useState(false)
     const handleDeleteButton = id => {
-        setIsloading(true)
+        setIsDelLoading(true)
         fetch('/api/deleteBookings', {
             method: "DELETE",
             body: JSON.stringify({
@@ -24,14 +24,21 @@ export default function ManagerBookings() {
             .then(res => res.json())
             .then(data => {
                 toast.success("Deleted Successfully")
-                setIsloading(false)
+                setIsDelLoading(false)
                 refetch()
             })
     }
+    
     return (
         <div className='my-5'>
             {
-                data ?
+                isLoading ?
+                
+                    <div className='flex justify-center'>
+                        <div>
+                            <Spinner/>
+                        </div>
+                    </div> :
                     <div className='grid grid-cols-1 lg:grid-cols-2 gap-2'>
                         {
                             data?.map((book, i) => <div className="bg-[#D9D9D9] rounded-lg p-5" key={i}>
@@ -58,7 +65,7 @@ export default function ManagerBookings() {
                                 </div>
                                 <div>
                                     {
-                                        isLoading ?
+                                        isDltLoading ?
 
                                             <Button className='bg-orange-400 my-2'><Spinner /></Button> :
                                             <Button onClick={() => handleDeleteButton(book._id)} className='bg-red-500 my-2'>Delete booking</Button>
@@ -66,8 +73,7 @@ export default function ManagerBookings() {
                                 </div>
                             </div>)
                         }
-                    </div> :
-                    <div>Loading...</div>
+                    </div> 
             }
         </div>
     )
