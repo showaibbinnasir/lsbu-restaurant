@@ -4,6 +4,7 @@ import NavigationBar from "@/components/NavigationBar/NavigationBar";
 import Footer from "@/components/Footer/Footer";
 import { ToastWrapper } from "keep-react";
 import { AuthProvider } from "@/components/Provider/Provider";
+import TanstackProvider from "@/components/Provider/TanstackProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,7 +35,7 @@ export default function RootLayout({ children }) {
         <AuthProvider>
           <NavigationBar></NavigationBar>
           <div className=" mx-2 lg:mx-10 px-1 lg:px-5">
-            {children}
+            <TanstackProvider>{children}</TanstackProvider>
             <ToastWrapper
               richColors={true}
               toastOptions={{
